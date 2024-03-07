@@ -99,3 +99,15 @@ class UsersRepository(BaseRepository):
         if user:
             user.isApproval = True
             self.db.commit()
+
+    def get_user_by_name(self, name: str):
+        """
+        Retrieves a user by name.
+
+        Parameters:
+            name (str): The name of the user to retrieve.
+
+        Returns:
+            User: The user object if found, None otherwise.
+        """
+        return self.db.query(User).filter(User.name == name).first()
